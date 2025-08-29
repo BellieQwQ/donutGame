@@ -41,11 +41,11 @@ sprite_frames = SubResource("SpriteFrames_i432v")
 position = Vector2(0, 10.6667)
 
 [node name="WakeUpTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.2
 one_shot = true
 
 [node name="SpawnLarvaTimer" type="Timer" parent="."]
-wait_time = 2.2
+wait_time = 1.4
 one_shot = true
 
 [connection signal="timeout" from="WakeUpTimer" to="." method="_on_wake_up_timer_timeout"]

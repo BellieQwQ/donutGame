@@ -21,21 +21,22 @@ func on_player_entered(body):
 func _on_wake_up_timer_timeout():
 	for i in range(4):
 		var newRocks = rocks.instantiate()
-		get_parent().add_child(newRocks)
-		newRocks.global_position = sceneSpawner.global_position
 		
 		var velocity = Vector2.ZERO
 		match i:
 			0:
-				velocity = Vector2(-500, -1400)  
+				velocity = Vector2(-800, -1600)  
 			1:
-				velocity = Vector2(-250, -1900)   
+				velocity = Vector2(-300, -2200)   
 			2:
-				velocity = Vector2(250, -1900)    
+				velocity = Vector2(300, -2200)    
 			3:
-				velocity = Vector2(500, -1400)   
+				velocity = Vector2(800, -1600)   
+
 		
-		newRocks.linear_velocity = velocity
+		newRocks.initialVelocity = velocity
+		get_parent().add_child(newRocks)
+		newRocks.global_position = sceneSpawner.global_position
 
 
 func _on_spawn_larva_timer_timeout():

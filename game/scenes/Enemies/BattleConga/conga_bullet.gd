@@ -1,14 +1,42 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-var direction = Vector2.LEFT
+@onready var normalHitbox = $BulletHurtbox/CollisionShape2D
+@onready var explosionHitbox = $ExplosionHurbox/CollisionShape2D
+@onready var explosionTimer = $ExplosionDuration
+@onready var animator = $AnimatedSprite2D
+@onready var FXmanager = $AnimationPlayer
 
-@export var speed = 1500.0
-@onready var bulletHurtbox = $BulletHurtbox
-@onready var explosionHurtbox = $ExplosionHurbox
+@export var initialVelocity = Vector2.ZERO
+@export var gravity = 4000
+
+var exploding = false
 
 func _ready():
-	linear_velocity = direction * speed
+	velocity = initialVelocity
 
-func setDirection(dir):
-	direction = dir.normalized()
-	linear_velocity = direction * speed
+func _physics_process(delta):
+	
+	if is_on_floor():
+		explode()
+		return
+		
+	velocity.y += gravity * delta
+	move_and_slide()
+	
+func explode():
+	if exploding:
+		return
+	exploding = true
+	velocity = Vector2.ZERO
+	normalHitbox.set_deferred("disabled", true)
+	explosionHitbox.set_deferred("disabled", false)
+	animator.play("explosion")
+	explosionTimer.start()
+	FXmanager.play("explosionFX")
+	
+func _on_bullet_hurtbox_body_entered(body):
+	if body.is_in_group("player"):
+		explode()
+	
+func _on_explosion_duration_timeout():
+	queue_free()

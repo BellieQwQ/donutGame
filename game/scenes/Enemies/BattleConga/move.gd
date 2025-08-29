@@ -2,6 +2,8 @@ extends EnemyState
 
 func enterState():
 	enemy.animator.play("idle")  
+	if enemy.longPlayerDetector.is_colliding():
+		shoot()
 	enemy.shootTimer.start() 
 
 func onPhysicsProcess(delta):
@@ -12,15 +14,22 @@ func onPhysicsProcess(delta):
 	else:
 		enemy.velocity.x = -1 * enemy.SPEED
 	
-	if !enemy.playerDetector.is_colliding():
+	if !enemy.longPlayerDetector.is_colliding():
 		stateMachine.changeState("Idle")
 		return
 	
 	applyGravity(delta)
 	enemy.move_and_slide()
 	
-func _on_shoot_timer_timeout():
+func shoot():
+	var elevation = 25  
+	if enemy.shortPlayerDetector.is_colliding():
+		elevation = 80   
 	var newBullet = enemy.bullet.instantiate()
+	var direction = enemy.getShootDirection(elevation)  
+	newBullet.initialVelocity = direction * 2500
 	get_parent().add_child(newBullet)
 	newBullet.global_position = enemy.bulletSpawner.global_position
-	newBullet.setDirection(enemy.getShootDirection(25))
+	
+func _on_shoot_timer_timeout():
+	shoot()

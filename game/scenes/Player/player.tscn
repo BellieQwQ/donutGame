@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c3ki3gdpkbqg4"]
+[gd_scene load_steps=60 format=3 uid="uid://c3ki3gdpkbqg4"]
 
 [ext_resource type="Texture2D" uid="uid://bo0parcfr0po7" path="res://assets/sprites/playerSprites/playerIdle/IdleTileset.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cnbxed4ladum4" path="res://scenes/Player/player.gd" id="1_qhqgy"]
@@ -328,7 +328,9 @@ size = Vector2(116, 166)
 size = Vector2(116, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbg44"]
-size = Vector2(116, 319)
+size = Vector2(112, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8khf"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
@@ -343,7 +345,7 @@ position = Vector2(-2, 85)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="JumpingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 21)
+position = Vector2(-1, 21)
 shape = SubResource("RectangleShape2D_tayva")
 disabled = true
 
@@ -352,10 +354,18 @@ position = Vector2(-2, 168)
 shape = SubResource("RectangleShape2D_uiqp4")
 
 [node name="SlidingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 174)
+position = Vector2(3.89414e-07, 176)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_nbg44")
 disabled = true
+
+[node name="slideDetector" type="ShapeCast2D" parent="."]
+position = Vector2(0, 80)
+scale = Vector2(6, 4)
+enabled = false
+shape = SubResource("RectangleShape2D_x8khf")
+target_position = Vector2(0, -4)
+collision_mask = 4
 
 [node name="SlideDuration" type="Timer" parent="."]
 wait_time = 0.5
@@ -366,7 +376,7 @@ wait_time = 1.2
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.45, 0.45)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("9_wwtew")

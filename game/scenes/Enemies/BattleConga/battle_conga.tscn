@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dr8dahfd6cwte"]
+[gd_scene load_steps=14 format=3 uid="uid://dr8dahfd6cwte"]
 
 [ext_resource type="Script" uid="uid://c858sxvyqpqa1" path="res://scenes/Enemies/BattleConga/battle_conga.gd" id="1_6adok"]
 [ext_resource type="Texture2D" uid="uid://b8fsa4uf5s1v6" path="res://assets/sprites/Enemies/BattleConga/BattleConga.png" id="1_cxfcf"]
@@ -7,9 +7,6 @@
 [ext_resource type="Script" uid="uid://b2usi0kt4fwe2" path="res://scenes/Enemies/BattleConga/idle.gd" id="4_8cho5"]
 [ext_resource type="Script" uid="uid://ghn16mbyoh7l" path="res://scenes/Enemies/BattleConga/fall.gd" id="5_dck53"]
 [ext_resource type="Script" uid="uid://dcoh48ei8me4r" path="res://scenes/Enemies/BattleConga/move.gd" id="5_o46sw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cho5"]
-size = Vector2(42.3529, 42.3529)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfcf"]
 size = Vector2(341.333, 213.333)
@@ -31,16 +28,17 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6adok"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqpi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cho5"]
+size = Vector2(42.3529, 42.3529)
+
 [node name="BattleConga" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6adok")
 bullet = ExtResource("2_kqpi2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.90735e-06, 2.38419e-07)
-shape = SubResource("RectangleShape2D_8cho5")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 
@@ -49,6 +47,8 @@ position = Vector2(-2.38419e-06, -21.3333)
 shape = SubResource("RectangleShape2D_cxfcf")
 
 [node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
 
 [node name="FlipRoot" type="Node2D" parent="."]
 
@@ -56,14 +56,24 @@ shape = SubResource("RectangleShape2D_cxfcf")
 sprite_frames = SubResource("SpriteFrames_1bay1")
 animation = &"idle"
 
-[node name="PlayerDetector" type="ShapeCast2D" parent="FlipRoot"]
+[node name="LongPlayerDetector" type="ShapeCast2D" parent="FlipRoot"]
 position = Vector2(-230.667, 25.3333)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_6adok")
 target_position = Vector2(-120.889, 0)
 
+[node name="ShortPlayerDetector" type="ShapeCast2D" parent="FlipRoot"]
+position = Vector2(-230.667, 25.3333)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_kqpi2")
+target_position = Vector2(-60, 0)
+
 [node name="bulletSpawner" type="Marker2D" parent="FlipRoot"]
 position = Vector2(-117.647, -108.235)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.90735e-06, 2.38419e-07)
+shape = SubResource("RectangleShape2D_8cho5")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("3_1bay1")

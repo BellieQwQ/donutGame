@@ -22,13 +22,14 @@ var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 *
 @onready var bulletSpawner = $FlipRoot/bulletSpawner
 @onready var hitbox = $CollisionShape2D
 @onready var hurtbox = $Hurtbox
-@onready var playerDetector = $FlipRoot/PlayerDetector
+@onready var longPlayerDetector = $FlipRoot/LongPlayerDetector
+@onready var shortPlayerDetector = $FlipRoot/ShortPlayerDetector
 @onready var shootTimer = $ShootTimer
 @onready var player = get_tree().get_first_node_in_group("player")
 
-func getShootDirection(elevationDegree = 25):
+func getShootDirection(elevationDegree):
 	var elevation = deg_to_rad(elevationDegree)
 	var direction = Vector2.RIGHT.rotated(-elevation)
 	if facingLeft:
-		direction = Vector2.LEFT.rotated(-elevation)
+		direction = Vector2.LEFT.rotated(elevation)
 	return direction.normalized()

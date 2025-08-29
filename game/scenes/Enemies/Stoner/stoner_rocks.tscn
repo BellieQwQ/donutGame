@@ -24,10 +24,9 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ff18k"]
 radius = 32.0
 
-[node name="StonerRocks" type="RigidBody2D"]
+[node name="StonerRocks" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 5
-gravity_scale = 2.5
 script = ExtResource("1_ff18k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -42,10 +41,4 @@ shape = SubResource("CircleShape2D_ycmh8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_ff18k")
 
-[node name="RockLifetime" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="timeout" from="RockLifetime" to="." method="_on_rock_lifetime_timeout"]

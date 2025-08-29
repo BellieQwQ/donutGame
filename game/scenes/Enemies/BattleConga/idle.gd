@@ -24,7 +24,7 @@ func onPhysicsProcess(delta):
 		stateMachine.changeState("Fall") 
 		return 
 	
-	if enemy.playerDetector.is_colliding(): 
+	if enemy.longPlayerDetector.is_colliding(): 
 		stateMachine.changeState("Move")
 		return
 	

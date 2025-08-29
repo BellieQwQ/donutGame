@@ -37,6 +37,7 @@ const SKID_DECELERATION = 4500
 @onready var slidingCollision = $SlidingHitbox
 @onready var slideDuration = $SlideDuration
 @onready var slideCooldown = $SlideCooldown
+@onready var slideDetector = $slideDetector
 
 func applyCornerCorrection():
 	var amount = 30

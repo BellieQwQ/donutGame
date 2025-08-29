@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://debvgobhig4md"]
+
+[ext_resource type="Texture2D" uid="uid://p7rv3i0jpyhb" path="res://assets/sprites/Enemies/HaepariA/HaepariA.png" id="1_psu1q"]
+[ext_resource type="Script" uid="uid://bjnkkenp1ygld" path="res://scenes/Enemies/HaepariA/haepari_a.gd" id="1_qg41y"]
+[ext_resource type="Script" uid="uid://cs7qv4a3b63e1" path="res://scenes/Enemies/StateMachine/enemy_state_machine.gd" id="3_682ep"]
+[ext_resource type="Script" uid="uid://dex3nd4hli1su" path="res://scenes/Enemies/StateMachine/States/move.gd" id="4_qg41y"]
+[ext_resource type="Script" uid="uid://cx1fg2r01pmxi" path="res://scenes/Enemies/StateMachine/States/fall.gd" id="5_xapix"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xapix"]
+atlas = ExtResource("1_psu1q")
+region = Rect2(0, 65, 144, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ia7y"]
+atlas = ExtResource("1_psu1q")
+region = Rect2(0, 0, 144, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_682ep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xapix")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ia7y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg41y"]
+size = Vector2(64, 37.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psu1q"]
+size = Vector2(106.667, 112)
+
+[node name="Haepari A" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qg41y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_682ep")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 45.3333)
+shape = SubResource("RectangleShape2D_qg41y")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_psu1q")
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("3_682ep")
+initialState = NodePath("Move")
+
+[node name="Move" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_qg41y")
+
+[node name="Fall" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_xapix")

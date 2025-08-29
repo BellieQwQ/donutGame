@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://yxbg1x4mgbdp"]
+
+[ext_resource type="Texture2D" uid="uid://cdgps8q38ck84" path="res://assets/sprites/Enemies/BattleConga/CongaBullet.png" id="1_21dp1"]
+[ext_resource type="Script" uid="uid://da63vlicebpwy" path="res://scenes/Enemies/BattleConga/conga_bullet.gd" id="1_o23yn"]
+[ext_resource type="Texture2D" uid="uid://d2d6tt8uls67a" path="res://assets/sprites/Enemies/BattleConga/CongaExplosion.png" id="3_erqng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o23yn"]
+atlas = ExtResource("1_21dp1")
+region = Rect2(0, 0, 47, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu6p0"]
+atlas = ExtResource("3_erqng")
+region = Rect2(0, 0, 130, 114)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_erqng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o23yn")
+}],
+"loop": true,
+"name": &"bullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu6p0")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eu6p0"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x544v"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fj3ib"]
+radius = 144.222
+
+[node name="CongaBullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_o23yn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_erqng")
+animation = &"bullet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eu6p0")
+
+[node name="BulletHurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHurtbox"]
+shape = SubResource("CircleShape2D_x544v")
+
+[node name="ExplosionHurbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionHurbox"]
+shape = SubResource("CircleShape2D_fj3ib")
+disabled = true

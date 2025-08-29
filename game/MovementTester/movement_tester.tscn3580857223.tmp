@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://fvy56qrhsct6"]
+
+[ext_resource type="PackedScene" uid="uid://debvgobhig4md" path="res://scenes/Enemies/HaepariA/haepari_a.tscn" id="1_qktdo"]
+[ext_resource type="PackedScene" uid="uid://c3ki3gdpkbqg4" path="res://scenes/Player/player.tscn" id="2_lm4dk"]
+[ext_resource type="PackedScene" uid="uid://cep7dhlysin6y" path="res://scenes/Enemies/HaepariA/haepari_b.tscn" id="3_lm4dk"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_3liuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea6cd"]
+size = Vector2(226, 218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa584"]
+size = Vector2(704, 218)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3liuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3liuv"]
+size = Vector2(13989, 135.5)
+
+[node name="MovementTester" type="Node2D"]
+
+[node name="PLatforms" type="Node" parent="."]
+
+[node name="block2" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(-224, 480)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block2"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block2"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block8" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(704, -472)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block8"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block8"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block9" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(2560, -472)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block9"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block9"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block10" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(2784, -472)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block10"]
+offset_right = 704.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block10"]
+position = Vector2(352, 108)
+shape = SubResource("RectangleShape2D_sa584")
+
+[node name="block3" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(0, 104)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block3"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block3"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block4" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(-224, 264)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block4"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block4"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block5" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(-224, -112)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block5"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block5"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block6" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(0, -488)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block6"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block6"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block7" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(-224, -328)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block7"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block7"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block11" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(3568, -472)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/block11"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/block11"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="platform" type="StaticBody2D" parent="PLatforms"]
+position = Vector2(-16, -288)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PLatforms/platform"]
+offset_left = 13.0
+offset_top = 991.0
+offset_right = 13954.0
+offset_bottom = 1125.0
+texture = SubResource("PlaceholderTexture2D_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLatforms/platform"]
+position = Vector2(6993.5, 1056.25)
+shape = SubResource("RectangleShape2D_3liuv")
+
+[node name="Haepari A" parent="." instance=ExtResource("1_qktdo")]
+position = Vector2(3072, -568)
+
+[node name="Player" parent="." instance=ExtResource("2_lm4dk")]
+position = Vector2(1072, 424)
+
+[node name="Haepari B" parent="." instance=ExtResource("3_lm4dk")]
+position = Vector2(3376, -568)

@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1m0cxsdwa54v"]
+
+[ext_resource type="Script" uid="uid://h8m618t25856" path="res://scenes/Enemies/HaepariB/haepari_b.gd" id="1_efert"]
+[ext_resource type="Texture2D" uid="uid://ckbhbhvhukytt" path="res://assets/sprites/Enemies/HaepariB/HaepariB.png" id="2_efert"]
+[ext_resource type="Script" uid="uid://cs7qv4a3b63e1" path="res://scenes/Enemies/StateMachine/enemy_state_machine.gd" id="3_okul5"]
+[ext_resource type="Script" uid="uid://bme58kvnvmbi2" path="res://scenes/Enemies/HaepariB/move.gd" id="4_cm32e"]
+[ext_resource type="Script" uid="uid://bes01shf6ycfh" path="res://scenes/Enemies/HaepariB/jump.gd" id="4_k20xd"]
+[ext_resource type="Script" uid="uid://b0ytaa4krax7w" path="res://scenes/Enemies/HaepariB/idle.gd" id="5_efert"]
+[ext_resource type="Script" uid="uid://ckspvsu6822ty" path="res://scenes/Enemies/HaepariB/fall.gd" id="7_0bj25"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okul5"]
+atlas = ExtResource("2_efert")
+region = Rect2(0, 0, 173, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr8f7"]
+atlas = ExtResource("2_efert")
+region = Rect2(0, 0, 173, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqbu8"]
+atlas = ExtResource("2_efert")
+region = Rect2(0, 0, 173, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jxgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okul5")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr8f7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqbu8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr8f7"]
+size = Vector2(64, 26.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxgf"]
+size = Vector2(106.667, 95.9998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm32e"]
+size = Vector2(853.333, 117.333)
+
+[node name="Haepari B" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_efert")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3jxgf")
+animation = &"jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 34.6667)
+shape = SubResource("RectangleShape2D_sr8f7")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -10.6667)
+shape = SubResource("RectangleShape2D_3jxgf")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 10.6667)
+shape = SubResource("RectangleShape2D_cm32e")
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+position = Vector2(-37.3333, 48)
+scale = Vector2(3, 3)
+target_position = Vector2(0, 12.4444)
+collision_mask = 4
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("3_okul5")
+initialState = NodePath("Move")
+metadata/_custom_type_script = "uid://cs7qv4a3b63e1"
+
+[node name="Jump" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_k20xd")
+
+[node name="Move" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_cm32e")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_efert")
+
+[node name="Fall" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_0bj25")

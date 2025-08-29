@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://fvy56qrhsct6"]
+
+[ext_resource type="PackedScene" uid="uid://dkk7usgskwf8x" path="res://scenes/Player/player2.tscn" id="1_3liuv"]
+[ext_resource type="PackedScene" uid="uid://c3ki3gdpkbqg4" path="res://scenes/Player/player.tscn" id="2_ea6cd"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_3liuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea6cd"]
+size = Vector2(226, 218)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3liuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3liuv"]
+size = Vector2(13989, 135.5)
+
+[node name="MovementTester" type="Node2D"]
+
+[node name="block" type="StaticBody2D" parent="."]
+position = Vector2(870, 7)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="block"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block2" type="StaticBody2D" parent="."]
+position = Vector2(1096, 7)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="block2"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block2"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block3" type="StaticBody2D" parent="."]
+position = Vector2(1322, 7)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="block3"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block3"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="block4" type="StaticBody2D" parent="."]
+position = Vector2(1548, 7)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="block4"]
+offset_right = 226.0
+offset_bottom = 217.0
+texture = SubResource("Texture2DRD_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block4"]
+position = Vector2(113, 108)
+shape = SubResource("RectangleShape2D_ea6cd")
+
+[node name="platform" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="platform"]
+offset_left = 13.0
+offset_top = 991.0
+offset_right = 13954.0
+offset_bottom = 1125.0
+texture = SubResource("PlaceholderTexture2D_3liuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+position = Vector2(6993.5, 1056.25)
+shape = SubResource("RectangleShape2D_3liuv")
+
+[node name="Player" parent="." instance=ExtResource("1_3liuv")]
+position = Vector2(897, 655)
+
+[node name="Player2" parent="." instance=ExtResource("2_ea6cd")]
+position = Vector2(379, -54)

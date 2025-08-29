@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgiuqax7c12l2"]
+
+[ext_resource type="Texture2D" uid="uid://bb1kgv7s5je2" path="res://assets/sprites/Enemies/Stoner/StonerLarva.png" id="1_5pfxc"]
+[ext_resource type="Script" uid="uid://ciyjd043iksc2" path="res://scenes/Enemies/Stoner/stoner_larva.gd" id="1_ex762"]
+[ext_resource type="Script" uid="uid://cs7qv4a3b63e1" path="res://scenes/Enemies/StateMachine/enemy_state_machine.gd" id="3_cwwdm"]
+[ext_resource type="Script" uid="uid://cdi4xlj6dbbjr" path="res://scenes/Enemies/Stoner/move.gd" id="4_kn4sl"]
+[ext_resource type="Script" uid="uid://dxoquppru25k4" path="res://scenes/Enemies/Stoner/exit_rock.gd" id="5_kn4sl"]
+[ext_resource type="Script" uid="uid://ckkgifyhfxmiu" path="res://scenes/Enemies/Stoner/fall.gd" id="6_wiee7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex762"]
+atlas = ExtResource("1_5pfxc")
+region = Rect2(0, 0, 102, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oenko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex762")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pfxc"]
+size = Vector2(58.6667, 26.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ex762"]
+size = Vector2(106.667, 37.3333)
+
+[node name="StonerLarva" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ex762")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oenko")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.66667, 2.66667)
+shape = SubResource("RectangleShape2D_5pfxc")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -2.66667)
+shape = SubResource("RectangleShape2D_ex762")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("3_cwwdm")
+initialState = NodePath("ExitRock")
+metadata/_custom_type_script = "uid://bi1mt5c45v0md"
+
+[node name="ExitRock" type="Node" parent="StateMachine"]
+script = ExtResource("5_kn4sl")
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("4_kn4sl")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_wiee7")

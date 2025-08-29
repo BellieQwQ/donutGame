@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4lu4fdd404yw"]
+
+[ext_resource type="Script" uid="uid://cg6yef4axy6ra" path="res://scenes/Enemies/stoner_rocks.gd" id="1_p1dsb"]
+[ext_resource type="Texture2D" uid="uid://drtg4nrgwv8id" path="res://assets/sprites/Enemies/Stoner/StonerRock1.png" id="1_sr40c"]
+[ext_resource type="Script" uid="uid://cls5vw0ecpxxs" path="res://scenes/Enemies/launcher.gd" id="1_yapp2"]
+[ext_resource type="Texture2D" uid="uid://b48iieacayjyp" path="res://assets/sprites/Enemies/Stoner/StonerRock2.png" id="2_ycmh8"]
+[ext_resource type="Texture2D" uid="uid://bsh5qawd76dan" path="res://assets/sprites/Enemies/Stoner/StonerRock3.png" id="3_p1dsb"]
+[ext_resource type="Texture2D" uid="uid://c8rt0s2jwfmr4" path="res://assets/sprites/Enemies/Stoner/StonerRock4.png" id="4_yapp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p618l"]
+atlas = ExtResource("1_sr40c")
+region = Rect2(0, 0, 39, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0r6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p618l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycmh8"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acx12"]
+atlas = ExtResource("2_ycmh8")
+region = Rect2(0, 0, 34, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1pcs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acx12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_655un"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi0ug"]
+atlas = ExtResource("3_p1dsb")
+region = Rect2(0, 0, 36, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_474lj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi0ug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i10l7"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8nqx"]
+atlas = ExtResource("4_yapp2")
+region = Rect2(0, 0, 34, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nvvcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8nqx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5fnv"]
+radius = 16.0
+
+[node name="StonerRocks" type="Node2D"]
+script = ExtResource("1_yapp2")
+
+[node name="Rock1" type="RigidBody2D" parent="."]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_p1dsb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rock1"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_i0r6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock1"]
+shape = SubResource("CircleShape2D_ycmh8")
+
+[node name="Rock2" type="RigidBody2D" parent="."]
+script = ExtResource("1_p1dsb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rock2"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w1pcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock2"]
+shape = SubResource("CircleShape2D_655un")
+
+[node name="Rock3" type="RigidBody2D" parent="."]
+script = ExtResource("1_p1dsb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rock3"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_474lj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock3"]
+shape = SubResource("CircleShape2D_i10l7")
+
+[node name="Rock4" type="RigidBody2D" parent="."]
+script = ExtResource("1_p1dsb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rock4"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_nvvcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock4"]
+shape = SubResource("CircleShape2D_l5fnv")

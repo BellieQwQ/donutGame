@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://blvqatll38iig"]
+
+[ext_resource type="Script" uid="uid://d10buvqvsa4w4" path="res://scenes/Enemies/Stoner/stoner_rock.gd" id="1_kumwr"]
+[ext_resource type="Texture2D" uid="uid://4ekjkj2jaxku" path="res://assets/sprites/Enemies/Stoner/StonerStone.png" id="1_xjpyk"]
+[ext_resource type="PackedScene" uid="uid://cgiuqax7c12l2" path="res://scenes/Enemies/Stoner/stoner_larva.tscn" id="2_akn3t"]
+[ext_resource type="PackedScene" uid="uid://c4lu4fdd404yw" path="res://scenes/Enemies/Stoner/stoner_rocks.tscn" id="3_i432v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kumwr"]
+radius = 298.714
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akn3t"]
+atlas = ExtResource("1_xjpyk")
+region = Rect2(0, 0, 120, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i432v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akn3t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StonerRock" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_kumwr")
+larva = ExtResource("2_akn3t")
+rocks = ExtResource("3_i432v")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_kumwr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i432v")
+
+[node name="SceneSpawner" type="Marker2D" parent="."]
+position = Vector2(0, 10.6667)
+
+[node name="WakeUpTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="SpawnLarvaTimer" type="Timer" parent="."]
+wait_time = 2.2
+one_shot = true
+
+[connection signal="timeout" from="WakeUpTimer" to="." method="_on_wake_up_timer_timeout"]
+[connection signal="timeout" from="SpawnLarvaTimer" to="." method="_on_spawn_larva_timer_timeout"]

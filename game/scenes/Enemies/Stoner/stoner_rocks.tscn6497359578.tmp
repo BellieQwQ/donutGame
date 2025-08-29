@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4lu4fdd404yw"]
+
+[ext_resource type="Script" uid="uid://cg6yef4axy6ra" path="res://scenes/Enemies/Stoner/stoner_rocks.gd" id="1_ff18k"]
+[ext_resource type="Texture2D" uid="uid://drtg4nrgwv8id" path="res://assets/sprites/Enemies/Stoner/StonerRock1.png" id="1_sr40c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p618l"]
+atlas = ExtResource("1_sr40c")
+region = Rect2(0, 0, 39, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0r6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p618l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycmh8"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ff18k"]
+radius = 32.0
+
+[node name="StonerRocks" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+gravity_scale = 2.5
+script = ExtResource("1_ff18k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_i0r6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ycmh8")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_ff18k")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

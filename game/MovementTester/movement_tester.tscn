@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://c3ki3gdpkbqg4" path="res://scenes/Player/player.tscn" id="2_lm4dk"]
 [ext_resource type="PackedScene" uid="uid://dr8dahfd6cwte" path="res://scenes/Enemies/BattleConga/battle_conga.tscn" id="2_webts"]
 [ext_resource type="Texture2D" uid="uid://dy6dhkudy67cs" path="res://assets/tutorial/RESET.png" id="3_2dp7u"]
-[ext_resource type="Texture2D" uid="uid://btdf5nw0qp56k" path="res://assets/tutorial/Untitled_Artwork-1.png" id="3_c2cqn"]
+[ext_resource type="Texture2D" uid="uid://bak8rjqqhae48" path="res://assets/tutorial/MOVE.png" id="3_k7dts"]
 [ext_resource type="PackedScene" uid="uid://b1m0cxsdwa54v" path="res://scenes/Enemies/HaepariB/haepari_b.tscn" id="3_lm4dk"]
-[ext_resource type="Texture2D" uid="uid://fraihyn8yeir" path="res://assets/tutorial/Untitled_Artwork-3.png" id="4_6qcxj"]
 [ext_resource type="PackedScene" uid="uid://blvqatll38iig" path="res://scenes/Enemies/Stoner/stoner_rock.tscn" id="4_c2cqn"]
 [ext_resource type="Texture2D" uid="uid://cx8ife405v75m" path="res://assets/tilesets/debugset.png" id="5_6qcxj"]
-[ext_resource type="Texture2D" uid="uid://ceshqpura5y7p" path="res://assets/tutorial/Untitled_Artwork-4.png" id="5_u03aq"]
-[ext_resource type="Texture2D" uid="uid://1c4iae0iotee" path="res://assets/tutorial/Untitled_Artwork-2.png" id="5_webts"]
-[ext_resource type="Texture2D" uid="uid://co0b6xkr7sqb1" path="res://assets/tutorial/Untitled_Artwork-5.png" id="6_u03aq"]
+[ext_resource type="Texture2D" uid="uid://dqyi82ldg4cqw" path="res://assets/tutorial/DUCK.png" id="5_paj65"]
+[ext_resource type="Texture2D" uid="uid://bmoyf13ta6hdr" path="res://assets/tutorial/JUMP.png" id="6_v3enk"]
+[ext_resource type="Texture2D" uid="uid://bvymksg8rw0kd" path="res://assets/tutorial/SPRINT.png" id="7_bj0xx"]
+[ext_resource type="Texture2D" uid="uid://dyek44tt0nbjq" path="res://assets/tutorial/SLIDE.png" id="8_uwncr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_webts"]
 texture = ExtResource("5_6qcxj")
@@ -49,27 +49,27 @@ scale = Vector2(2, 2)
 
 [node name="Move" type="Sprite2D" parent="tutorialText"]
 position = Vector2(176, 240)
-texture = ExtResource("3_c2cqn")
+texture = ExtResource("3_k7dts")
 
-[node name="Move2" type="Sprite2D" parent="tutorialText"]
+[node name="Restart" type="Sprite2D" parent="tutorialText"]
 position = Vector2(176, 76)
 texture = ExtResource("3_2dp7u")
 
 [node name="Duck" type="Sprite2D" parent="tutorialText"]
 position = Vector2(1044, 228)
-texture = ExtResource("4_6qcxj")
+texture = ExtResource("5_paj65")
 
 [node name="Jump" type="Sprite2D" parent="tutorialText"]
 position = Vector2(1992, 196)
-texture = ExtResource("5_webts")
+texture = ExtResource("6_v3enk")
 
 [node name="Sprint" type="Sprite2D" parent="tutorialText"]
 position = Vector2(3484, -128)
-texture = ExtResource("5_u03aq")
+texture = ExtResource("7_bj0xx")
 
 [node name="Slide" type="Sprite2D" parent="tutorialText"]
 position = Vector2(5744, -180)
-texture = ExtResource("6_u03aq")
+texture = ExtResource("8_uwncr")
 
 [node name="Enemies" type="Node2D" parent="."]
 

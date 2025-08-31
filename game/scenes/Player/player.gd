@@ -21,14 +21,17 @@ var jumpVelocity = ((2.0 * jumpHeight) / (timeToJumpPeak)) * -1
 var jumpGravity = ((-2.0 * jumpHeight) / (timeToJumpPeak * timeToJumpPeak)) * -1 * 1.2
 var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 * 1.4
 
-const SPEED = 800
+const SPEED = 900
 const SPRINT_SPEED = 1800
-const ACCELERATION = 2000
-const DECELERATION = 4000
+const ACCELERATION = 3000
+const DECELERATION = 12000
 const SKID_THRESHOLD = 1000
 const SLIDE_SPEED = 3000
 const SLIDE_DECELERATION = 3000
 const SKID_DECELERATION = 4500
+
+const AIR_CONTROL = 0.35
+const STOP_EPSILON = 10
 
 @onready var animator = $AnimatedSprite2D
 @onready var standingCollision = $StandingHitbox

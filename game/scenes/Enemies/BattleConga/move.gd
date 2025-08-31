@@ -2,8 +2,6 @@ extends EnemyState
 
 func enterState():
 	enemy.animator.play("idle")  
-	if enemy.longPlayerDetector.is_colliding():
-		shoot()
 	enemy.shootTimer.start() 
 
 func onPhysicsProcess(delta):

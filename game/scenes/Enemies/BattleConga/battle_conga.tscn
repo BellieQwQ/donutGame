@@ -47,7 +47,7 @@ position = Vector2(-2.38419e-06, -21.3333)
 shape = SubResource("RectangleShape2D_cxfcf")
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 1.8
 autostart = true
 
 [node name="FlipRoot" type="Node2D" parent="."]

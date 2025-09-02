@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://fvy56qrhsct6"]
 
-[ext_resource type="Script" uid="uid://c68bvytccifty" path="res://MovementTester/movement_tester.gd" id="1_k7dts"]
+[ext_resource type="Script" path="res://MovementTester/movement_tester.gd" id="1_k7dts"]
 [ext_resource type="PackedScene" uid="uid://debvgobhig4md" path="res://scenes/Enemies/HaepariA/haepari_a.tscn" id="1_qktdo"]
 [ext_resource type="PackedScene" uid="uid://c3ki3gdpkbqg4" path="res://scenes/Player/player.tscn" id="2_lm4dk"]
 [ext_resource type="PackedScene" uid="uid://dr8dahfd6cwte" path="res://scenes/Enemies/BattleConga/battle_conga.tscn" id="2_webts"]
@@ -89,4 +89,4 @@ position = Vector2(26672, -1816)
 position = Vector2(41176, 392)
 
 [node name="Player" parent="." instance=ExtResource("2_lm4dk")]
-position = Vector2(-5760, 800)
+position = Vector2(-8524, 800)

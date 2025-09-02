@@ -30,3 +30,4 @@ func onPhysicsProcess(delta):
 	if Input.is_action_pressed("Down"):
 		stateMachine.changeState("Crouch")
 	
+	

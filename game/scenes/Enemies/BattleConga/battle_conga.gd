@@ -29,7 +29,7 @@ var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 *
 
 func getShootDirection(elevationDegree):
 	var elevation = deg_to_rad(elevationDegree)
-	var direction = Vector2.RIGHT.rotated(-elevation)
+	var bulletDirection = Vector2.RIGHT.rotated(-elevation)
 	if facingLeft:
-		direction = Vector2.LEFT.rotated(elevation)
-	return direction.normalized()
+		bulletDirection = Vector2.LEFT.rotated(elevation)
+	return bulletDirection.normalized()

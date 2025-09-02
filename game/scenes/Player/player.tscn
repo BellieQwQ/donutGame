@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://c3ki3gdpkbqg4"]
+[gd_scene load_steps=64 format=3 uid="uid://c3ki3gdpkbqg4"]
 
 [ext_resource type="Texture2D" uid="uid://bo0parcfr0po7" path="res://assets/sprites/playerSprites/playerIdle/IdleTileset.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cnbxed4ladum4" path="res://scenes/Player/player.gd" id="1_qhqgy"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c7hwtbphn368i" path="res://scenes/Player/fall.gd" id="16_1bwnf"]
 [ext_resource type="Script" uid="uid://ctj5r1mbjn8x7" path="res://scenes/Player/jump.gd" id="16_tayva"]
 [ext_resource type="Script" uid="uid://5a8ybfyho5bc" path="res://scenes/Player/slide.gd" id="17_tayva"]
+[ext_resource type="Script" uid="uid://pq55fpcwav2j" path="res://scenes/Player/hurt.gd" id="18_x8khf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbg44"]
 atlas = ExtResource("2_uiqp4")
@@ -330,6 +331,43 @@ size = Vector2(116, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbg44"]
 size = Vector2(112, 320)
 
+[sub_resource type="Animation" id="Animation_x8khf"]
+resource_name = "Iframes"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aciub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aciub"]
+_data = {
+&"Iframes": SubResource("Animation_x8khf"),
+&"RESET": SubResource("Animation_aciub")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8khf"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -359,6 +397,11 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_nbg44")
 disabled = true
 
+[node name="FXManager" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aciub")
+}
+
 [node name="slideDetector" type="ShapeCast2D" parent="."]
 position = Vector2(0, 80)
 scale = Vector2(6, 4)
@@ -366,6 +409,10 @@ enabled = false
 shape = SubResource("RectangleShape2D_x8khf")
 target_position = Vector2(0, -4)
 collision_mask = 4
+
+[node name="InvincibleTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="SlideDuration" type="Timer" parent="."]
 wait_time = 0.5
@@ -406,4 +453,8 @@ script = ExtResource("16_tayva")
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource("17_tayva")
 
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("18_x8khf")
+
+[connection signal="timeout" from="InvincibleTime" to="StateMachine/Hurt" method="_on_iframes_timeout"]
 [connection signal="timeout" from="SlideDuration" to="StateMachine/Slide" method="_on_slide_duration_timeout"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var normalHitbox = $BulletHurtbox/CollisionShape2D
-@onready var explosionHitbox = $ExplosionHurbox/CollisionShape2D
+@onready var explosionHitbox = $ExplosionHurtbox/CollisionShape2D
 @onready var explosionTimer = $ExplosionDuration
 @onready var animator = $AnimatedSprite2D
 @onready var FXmanager = $AnimationPlayer
@@ -35,8 +35,19 @@ func explode():
 	FXmanager.play("explosionFX")
 	
 func _on_bullet_hurtbox_body_entered(body):
-	if body.is_in_group("player"):
+	if body is Player and !body.invincible:
+		var enemyPosition = sign(body.global_position.x - self.global_position.x)
+		body.knockbackDirection = enemyPosition
+		body.call_deferred("emit_signal", "playerHurt")
 		explode()
+		print("PLAYER DETECTED")
 	
 func _on_explosion_duration_timeout():
 	queue_free()
+	
+func _on_explosion_hurtbox_body_entered(body):
+	if body is Player and !body.invincible:
+		var enemyPosition = sign(body.global_position.x - self.global_position.x)
+		body.knockbackDirection = enemyPosition
+		body.call_deferred("emit_signal", "playerHurt")
+		print("PLAYER DETECTED")

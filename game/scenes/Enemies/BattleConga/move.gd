@@ -20,7 +20,7 @@ func onPhysicsProcess(delta):
 	enemy.move_and_slide()
 	
 func shoot():
-	var elevation = 25  
+	var elevation = 20  
 	if enemy.shortPlayerDetector.is_colliding():
 		elevation = 80   
 	var newBullet = enemy.bullet.instantiate()

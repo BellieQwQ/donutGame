@@ -32,7 +32,7 @@ var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 *
 signal playerHurt
 
 const SPEED = 900
-const SPRINT_SPEED = 1800
+const SPRINT_SPEED = 2000
 const ACCELERATION = 3000
 const DECELERATION = 12000
 const SKID_THRESHOLD = 1000
@@ -51,6 +51,7 @@ const SKID_DECELERATION = 4500
 @onready var slideDetector = $slideDetector
 @onready var FXmanager = $FXManager
 @onready var invincibleTime = $InvincibleTime
+@onready var knockTime = $KnockTime
 
 func _ready():
 	playerHurt.connect(_on_player_hurt)
@@ -68,3 +69,5 @@ func applyCornerCorrection():
 
 func _on_player_hurt():
 	stateMachine.changeState("Hurt")
+	lives -= 1
+	print(str(lives))

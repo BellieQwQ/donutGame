@@ -7,8 +7,8 @@ func enterState():
 	if not player.animator.animation_finished.is_connected(_on_anim_finished):
 		player.animator.animation_finished.connect(_on_anim_finished)
 	
-	player.standingCollision.disabled = true
-	player.crouchingCollision.disabled = false
+	player.standingCollision.set_deferred("disabled", true)
+	player.crouchingCollision.set_deferred("disabled", false)
 	
 func onPhysicsProcess(delta):
 	getDirection()
@@ -46,5 +46,5 @@ func exitState():
 	if player.animator.animation_finished.is_connected(_on_anim_finished):
 		player.animator.animation_finished.disconnect(_on_anim_finished)
 	
-	player.standingCollision.disabled = false
-	player.crouchingCollision.disabled = true
+	player.standingCollision.set_deferred("disabled", false)
+	player.crouchingCollision.set_deferred("disabled", true)

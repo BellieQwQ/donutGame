@@ -5,8 +5,8 @@ func enterState():
 	player.velocity.y = player.jumpVelocity
 	print("Entering state: " + str(stateMachine.currentState))
 	
-	player.standingCollision.disabled = true
-	player.jumpingCollision.disabled = false
+	player.standingCollision.set_deferred("disabled", true)
+	player.jumpingCollision.set_deferred("disabled", false)
 	
 func onPhysicsProcess(delta):
 	applyGravity(delta)
@@ -33,5 +33,5 @@ func onPhysicsProcess(delta):
 	handlePlayerCorrection(delta)
 	
 func exitState():
-	player.standingCollision.disabled = false
-	player.jumpingCollision.disabled = true
+	player.standingCollision.set_deferred("disabled", false)
+	player.jumpingCollision.set_deferred("disabled", true)

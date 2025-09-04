@@ -61,3 +61,5 @@ script = ExtResource("4_kn4sl")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("6_wiee7")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

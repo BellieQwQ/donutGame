@@ -8,9 +8,6 @@
 [ext_resource type="Script" uid="uid://ghn16mbyoh7l" path="res://scenes/Enemies/BattleConga/fall.gd" id="5_dck53"]
 [ext_resource type="Script" uid="uid://dcoh48ei8me4r" path="res://scenes/Enemies/BattleConga/move.gd" id="5_o46sw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfcf"]
-size = Vector2(341.333, 213.333)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6adok"]
 atlas = ExtResource("1_cxfcf")
 region = Rect2(0, 0, 366, 293)
@@ -30,46 +27,50 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqpi2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfcf"]
+size = Vector2(224, 161.333)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cho5"]
 size = Vector2(42.3529, 42.3529)
 
 [node name="BattleConga" type="CharacterBody2D"]
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6adok")
 bullet = ExtResource("2_kqpi2")
 
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-2.38419e-06, -21.3333)
-shape = SubResource("RectangleShape2D_cxfcf")
-
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 1.8
-autostart = true
-
 [node name="FlipRoot" type="Node2D" parent="."]
+scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipRoot"]
 sprite_frames = SubResource("SpriteFrames_1bay1")
 animation = &"idle"
 
 [node name="LongPlayerDetector" type="ShapeCast2D" parent="FlipRoot"]
-position = Vector2(-230.667, 25.3333)
+position = Vector2(-230.4, -16)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_6adok")
-target_position = Vector2(-120.889, 0)
+target_position = Vector2(-180, 0)
 
 [node name="ShortPlayerDetector" type="ShapeCast2D" parent="FlipRoot"]
-position = Vector2(-230.667, 25.3333)
+position = Vector2(-230.4, -16)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_kqpi2")
-target_position = Vector2(-60, 0)
+target_position = Vector2(-35.555, 0)
 
 [node name="bulletSpawner" type="Marker2D" parent="FlipRoot"]
 position = Vector2(-117.647, -108.235)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-12, 4.6666)
+shape = SubResource("RectangleShape2D_cxfcf")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.4
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.90735e-06, 2.38419e-07)
@@ -89,4 +90,5 @@ script = ExtResource("5_o46sw")
 [node name="Fall" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("5_dck53")
 
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="EnemyStateMachine/Move" method="_on_shoot_timer_timeout"]

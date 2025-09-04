@@ -104,3 +104,5 @@ script = ExtResource("5_efert")
 
 [node name="Fall" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("7_0bj25")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

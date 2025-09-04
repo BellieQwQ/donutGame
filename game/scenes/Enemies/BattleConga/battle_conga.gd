@@ -33,3 +33,10 @@ func getShootDirection(elevationDegree):
 	if facingLeft:
 		bulletDirection = Vector2.LEFT.rotated(elevation)
 	return bulletDirection.normalized()
+	
+func _on_hurtbox_body_entered(body):
+	if body is Player and !body.invincible:
+		var enemyPosition = sign(body.global_position.x - self.global_position.x)
+		body.knockbackDirection = enemyPosition
+		body.emit_signal("playerHurt")
+		print("PLAYER DETECTED")

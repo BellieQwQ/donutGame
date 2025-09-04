@@ -26,7 +26,6 @@ radius = 32.0
 
 [node name="StonerRocks" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 5
 script = ExtResource("1_ff18k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

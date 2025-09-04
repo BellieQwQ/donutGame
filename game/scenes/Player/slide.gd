@@ -8,9 +8,9 @@ func enterState():
 	player.velocity.x = player.slideDirection * player.SLIDE_SPEED
 	player.slideDuration.start()
 	
-	player.standingCollision.disabled = true
-	player.slideDetector.enabled = true
-	player.slidingCollision.disabled = false
+	player.standingCollision.set_deferred("disabled", true)
+	player.slideDetector.set_deferred("enabled", true)
+	player.slidingCollision.set_deferred("disabled", false)
 	
 func onPhysicsProcess(delta):
 	var blockedAbove = player.slideDetector.is_colliding()
@@ -42,6 +42,6 @@ func exitState():
 	if player.slideDuration.is_stopped() == false:
 		player.slideDuration.stop()
 	
-	player.standingCollision.disabled = false
-	player.slideDetector.enabled = false
-	player.slidingCollision.disabled = true
+	player.standingCollision.set_deferred("disabled", false)
+	player.slideDetector.set_deferred("enabled", false)
+	player.slidingCollision.set_deferred("disabled", true)

@@ -28,10 +28,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqpi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfcf"]
-size = Vector2(224, 161.333)
+size = Vector2(224, 163.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cho5"]
-size = Vector2(42.3529, 42.3529)
+size = Vector2(217.6, 96)
 
 [node name="BattleConga" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -41,7 +41,6 @@ script = ExtResource("1_6adok")
 bullet = ExtResource("2_kqpi2")
 
 [node name="FlipRoot" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipRoot"]
 sprite_frames = SubResource("SpriteFrames_1bay1")
@@ -62,10 +61,10 @@ target_position = Vector2(-35.555, 0)
 [node name="bulletSpawner" type="Marker2D" parent="FlipRoot"]
 position = Vector2(-117.647, -108.235)
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-12, 4.6666)
+position = Vector2(-12.8, 4.8)
 shape = SubResource("RectangleShape2D_cxfcf")
 
 [node name="ShootTimer" type="Timer" parent="."]
@@ -73,7 +72,7 @@ wait_time = 1.4
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.90735e-06, 2.38419e-07)
+position = Vector2(-12.8, -25.6)
 shape = SubResource("RectangleShape2D_8cho5")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]

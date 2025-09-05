@@ -23,7 +23,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pfxc"]
-size = Vector2(58.6667, 26.6667)
+size = Vector2(96, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ex762"]
 size = Vector2(106.667, 37.3333)
@@ -39,10 +39,10 @@ sprite_frames = SubResource("SpriteFrames_oenko")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.66667, 2.66667)
+position = Vector2(1.90735e-06, 1.06494e-05)
 shape = SubResource("RectangleShape2D_5pfxc")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -2.66667)

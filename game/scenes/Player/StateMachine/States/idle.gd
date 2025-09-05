@@ -21,11 +21,14 @@ func onPhysicsProcess(delta):
 	if player.is_on_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0, player.DECELERATION * delta)
 	
-	if player.direction != 0:
-		if Input.is_action_pressed("Sprint"):
-			stateMachine.changeState("Sprint")
-		else:
-			stateMachine.changeState("Walk")
+	if abs(player.velocity.x) <= 0.1 and player.direction == 0 and !Input.is_action_pressed("Sprint"):
+		pass
+	else:
+		if player.direction != 0:
+			if Input.is_action_pressed("Sprint"):
+				stateMachine.changeState("Sprint")
+			else:
+				stateMachine.changeState("Walk")
 	
 	if Input.is_action_pressed("Down"):
 		stateMachine.changeState("Crouch")

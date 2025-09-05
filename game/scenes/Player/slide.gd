@@ -25,6 +25,15 @@ func onPhysicsProcess(delta):
 		stateMachine.changeState("Fall")
 		return
 	
+	if player.is_on_wall():
+		var wallDirection = player.get_wall_normal()
+		
+		if abs(wallDirection.x) > 0.2:
+			player.velocity.x = wallDirection.x * player.knockbackForce
+		
+		player.velocity.y = player.knockbackHeight
+		stateMachine.changeState("Jump")
+	
 	applyGravity(delta)
 	handlePlayerCorrection(delta)
 	

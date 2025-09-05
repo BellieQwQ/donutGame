@@ -22,8 +22,6 @@ func onPhysicsProcess(delta):
 				stateMachine.changeState("Sprint")
 			else:
 				stateMachine.changeState("Walk")
-		else:
-			stateMachine.changeState("Idle")
 		return
 	
 	flip()

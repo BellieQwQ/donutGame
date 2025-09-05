@@ -34,10 +34,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg41y"]
-size = Vector2(64, 26.6667)
+size = Vector2(96, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psu1q"]
-size = Vector2(106.667, 98.6667)
+size = Vector2(106.667, 101.333)
 
 [node name="Haepari A" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -50,13 +50,13 @@ sprite_frames = SubResource("SpriteFrames_682ep")
 animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 29.3333)
+position = Vector2(-6.35783e-07, -5.33334)
 shape = SubResource("RectangleShape2D_qg41y")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -6.66667)
+position = Vector2(-8.2016e-05, -7.99999)
 shape = SubResource("RectangleShape2D_psu1q")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]

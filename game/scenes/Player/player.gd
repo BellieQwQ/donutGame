@@ -15,15 +15,15 @@ var coyoteTimer = 0
 var jumpBufferTime = 0.2
 var jumpBufferTimer = 0
 
-var knockbackHeight = -2000
+var knockbackHeight = -2800
 var knockbackForce = 1000
 var knockbackDirection = 0
 
 var direction = 0
 var slideDirection = 0
 var jumpHeight = 800 # previously 700
-var timeToJumpPeak = 0.55
-var timeToDescent = 0.45
+var timeToJumpPeak = 0.45
+var timeToDescent = 0.40
 
 var jumpVelocity = ((2.0 * jumpHeight) / (timeToJumpPeak)) * -1
 var jumpGravity = ((-2.0 * jumpHeight) / (timeToJumpPeak * timeToJumpPeak)) * -1 * 1.2
@@ -36,8 +36,8 @@ const SPRINT_SPEED = 2000
 const ACCELERATION = 3000
 const DECELERATION = 12000
 const SKID_THRESHOLD = 1000
-const SLIDE_SPEED = 3000
-const SLIDE_DECELERATION = 3000
+const SLIDE_SPEED = 4500
+const SLIDE_DECELERATION = 7000
 const SKID_DECELERATION = 4500
 
 @onready var stateMachine = $StateMachine

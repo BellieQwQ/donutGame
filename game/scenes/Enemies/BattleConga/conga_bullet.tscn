@@ -114,12 +114,12 @@ animation = &"bullet"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eu6p0")
 
-[node name="BulletHurtbox" type="Area2D" parent="."]
+[node name="BulletHurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHurtbox"]
 shape = SubResource("CircleShape2D_x544v")
 
-[node name="ExplosionHurtbox" type="Area2D" parent="."]
+[node name="ExplosionHurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionHurtbox"]
 shape = SubResource("CircleShape2D_fj3ib")

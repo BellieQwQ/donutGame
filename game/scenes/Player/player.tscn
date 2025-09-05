@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://c3ki3gdpkbqg4"]
+[gd_scene load_steps=65 format=3 uid="uid://c3ki3gdpkbqg4"]
 
 [ext_resource type="Texture2D" uid="uid://bo0parcfr0po7" path="res://assets/sprites/playerSprites/playerIdle/IdleTileset.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cnbxed4ladum4" path="res://scenes/Player/player.gd" id="1_qhqgy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://l25ejcx4agyg" path="res://assets/sprites/playerSprites/playerFall/fallTileset.png" id="3_hvfru"]
 [ext_resource type="Texture2D" uid="uid://bigivuu1n3ovb" path="res://assets/sprites/playerSprites/PlayerJump/jumpTileset2.png" id="5_hvfru"]
 [ext_resource type="Texture2D" uid="uid://bdmrdmbwiffha" path="res://assets/sprites/playerSprites/playerSkidding/skiddingTileset.png" id="7_a06cl"]
+[ext_resource type="Texture2D" uid="uid://c2teo35scarl0" path="res://assets/sprites/playerSprites/playerSlide/Slide.png" id="8_aciub"]
 [ext_resource type="Texture2D" uid="uid://u334k2i2cge2" path="res://assets/sprites/playerSprites/playerWalk/walkTileset.png" id="8_dl1wr"]
 [ext_resource type="Script" uid="uid://bi1mt5c45v0md" path="res://scenes/Player/StateMachine/state_machine.gd" id="9_wwtew"]
 [ext_resource type="Script" uid="uid://cpro4ac6lkdgm" path="res://scenes/Player/StateMachine/States/idle.gd" id="10_uxo23"]
@@ -128,8 +129,8 @@ atlas = ExtResource("7_a06cl")
 region = Rect2(1000, 0, 500, 570)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o05ft"]
-atlas = ExtResource("2_uiqp4")
-region = Rect2(1500, 0, 500, 570)
+atlas = ExtResource("8_aciub")
+region = Rect2(0, 0, 570, 570)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bwnf"]
 atlas = ExtResource("8_dl1wr")
@@ -376,7 +377,7 @@ script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"Run"
+animation = &"Slide"
 
 [node name="StandingHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 85)
@@ -415,7 +416,7 @@ wait_time = 1.8
 one_shot = true
 
 [node name="KnockTime" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.5
 one_shot = true
 
 [node name="SlideDuration" type="Timer" parent="."]

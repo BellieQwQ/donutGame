@@ -31,7 +31,7 @@ func handleJumpEvents(delta):
 	if player.is_on_floor():
 		player.coyoteTimer = player.coyoteTime
 	
-	if (player.is_on_floor() or player.coyoteTimer > 0) and player.jumpBufferTimer > 0:
+	if (player.is_on_floor() or player.coyoteTimer > 0) and player.jumpBufferTimer > 0 and !player.blockedAbove:
 		player.coyoteTimer = 0
 		player.jumpBufferTimer = 0
 		stateMachine.changeState("Jump")

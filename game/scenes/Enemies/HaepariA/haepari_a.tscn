@@ -34,12 +34,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg41y"]
-size = Vector2(96, 96)
+size = Vector2(74.6667, 21.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psu1q"]
 size = Vector2(106.667, 101.333)
 
-[node name="Haepari A" type="CharacterBody2D"]
+[node name="Haepari A" type="CharacterBody2D" groups=["electricDamage"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 5
@@ -50,10 +50,15 @@ sprite_frames = SubResource("SpriteFrames_682ep")
 animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6.35783e-07, -5.33334)
+position = Vector2(-6.35783e-07, 32)
 shape = SubResource("RectangleShape2D_qg41y")
 
+[node name="HurtboxTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
 [node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-8.2016e-05, -7.99999)
@@ -69,4 +74,5 @@ script = ExtResource("4_qg41y")
 [node name="Fall" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("5_xapix")
 
+[connection signal="timeout" from="HurtboxTimer" to="." method="_on_hurtbox_timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

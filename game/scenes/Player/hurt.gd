@@ -1,7 +1,11 @@
 extends State
 
 func enterState():
-	player.animator.play("Crouch")
+	var hurtAnimation = "Hurt"
+	if player.lastDamageReceived == Player.DamageType.ELECTRIC:
+		hurtAnimation = "Electrocuted"
+	player.animator.play(hurtAnimation)
+	
 	player.FXmanager.play("Iframes")
 	player.invincibleTime.start()
 	player.knockTime.start()

@@ -48,6 +48,10 @@ shape = SubResource("RectangleShape2D_5pfxc")
 position = Vector2(0, -2.66667)
 shape = SubResource("RectangleShape2D_ex762")
 
+[node name="HurtboxTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("3_cwwdm")
 initialState = NodePath("ExitRock")
@@ -63,3 +67,4 @@ script = ExtResource("4_kn4sl")
 script = ExtResource("6_wiee7")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="HurtboxTimer" to="." method="_on_hurtbox_timer_timeout"]

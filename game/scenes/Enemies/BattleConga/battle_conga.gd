@@ -16,6 +16,8 @@ var jumpVelocity = ((2.0 * jumpHeight) / (timeToJumpPeak)) * -1
 var jumpGravity = ((-2.0 * jumpHeight) / (timeToJumpPeak * timeToJumpPeak)) * -1 * 1.2
 var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 * 1.4
 
+var damageType = Player.DamageType.NORMAL
+
 @export var bullet : PackedScene
 
 @onready var animator = $FlipRoot/AnimatedSprite2D
@@ -25,6 +27,7 @@ var fallGravity = ((-2.0 * jumpHeight) / (timeToDescent * timeToDescent)) * -1 *
 @onready var longPlayerDetector = $FlipRoot/LongPlayerDetector
 @onready var shortPlayerDetector = $FlipRoot/ShortPlayerDetector
 @onready var shootTimer = $ShootTimer
+@onready var hurtboxTimer = $HurtboxTimer
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func getShootDirection(elevationDegree):
@@ -36,7 +39,14 @@ func getShootDirection(elevationDegree):
 	
 func _on_hurtbox_body_entered(body):
 	if body is Player and !body.invincible:
+		body.lastDamageReceived = damageType
+		
 		var enemyPosition = sign(body.global_position.x - self.global_position.x)
 		body.knockbackDirection = enemyPosition
 		body.emit_signal("playerHurt")
 		print("PLAYER DETECTED")
+		hurtboxTimer.start()
+		hurtbox.set_deferred("monitoring", false)
+	
+func _on_hurtbox_timer_timeout():
+	hurtbox.set_deferred("monitoring", true)

@@ -7,6 +7,8 @@ var lives = 3
 var isFacingRight = true
 var isSprinting = false
 var isJumping = false
+var blockedAbove = false
+var canJump = true
 var invincible = false
 
 var coyoteTime = 0.12
@@ -22,8 +24,8 @@ var knockbackDirection = 0
 var direction = 0
 var slideDirection = 0
 var jumpHeight = 800 # previously 700
-var timeToJumpPeak = 0.45
-var timeToDescent = 0.40
+var timeToJumpPeak = 0.48
+var timeToDescent = 0.42
 
 var jumpVelocity = ((2.0 * jumpHeight) / (timeToJumpPeak)) * -1
 var jumpGravity = ((-2.0 * jumpHeight) / (timeToJumpPeak * timeToJumpPeak)) * -1 * 1.2
@@ -53,8 +55,14 @@ const SKID_DECELERATION = 4500
 @onready var invincibleTime = $InvincibleTime
 @onready var knockTime = $KnockTime
 
+enum DamageType { NORMAL, ELECTRIC }
+var lastDamageReceived: DamageType = DamageType.NORMAL
+
 func _ready():
 	playerHurt.connect(_on_player_hurt)
+
+func _physics_process(delta):
+	blockedAbove = slideDetector.is_colliding()
 
 func applyCornerCorrection():
 	var amount = 30

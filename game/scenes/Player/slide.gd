@@ -41,7 +41,7 @@ func _on_slide_duration_timeout():
 	if stateMachine.currentState != self:
 		return
 	
-	if player.slideDetector.is_colliding():
+	if player.blockedAbove:
 		player.slideDuration.start()
 	else:
 		player.slideCooldown.start()

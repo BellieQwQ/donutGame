@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var animator = $AnimatedSprite2D
 @onready var FXmanager = $AnimationPlayer
 
+var damageType = Player.DamageType.NORMAL
+
 @export var initialVelocity = Vector2.ZERO
 @export var gravity = 4000
 
@@ -36,6 +38,8 @@ func explode():
 	
 func _on_bullet_hurtbox_body_entered(body):
 	if body is Player and !body.invincible:
+		body.lastDamageReceived = damageType
+		
 		var enemyPosition = sign(body.global_position.x - self.global_position.x)
 		body.knockbackDirection = enemyPosition
 		body.call_deferred("emit_signal", "playerHurt")

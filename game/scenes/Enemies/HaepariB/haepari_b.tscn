@@ -56,7 +56,7 @@ size = Vector2(106.667, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm32e"]
 size = Vector2(853.333, 117.333)
 
-[node name="Haepari B" type="CharacterBody2D"]
+[node name="Haepari B" type="CharacterBody2D" groups=["electricDamage"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 5
@@ -88,6 +88,10 @@ scale = Vector2(3, 3)
 target_position = Vector2(0, 12.4444)
 collision_mask = 4
 
+[node name="HurtboxTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("3_okul5")
 initialState = NodePath("Move")
@@ -106,3 +110,4 @@ script = ExtResource("5_efert")
 script = ExtResource("7_0bj25")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="HurtboxTimer" to="." method="_on_hurtbox_timer_timeout"]

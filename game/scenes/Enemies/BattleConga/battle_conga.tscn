@@ -28,10 +28,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqpi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfcf"]
-size = Vector2(224, 163.2)
+size = Vector2(297.6, 198.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cho5"]
-size = Vector2(217.6, 96)
+size = Vector2(35.2, 35.2)
 
 [node name="BattleConga" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -64,15 +64,19 @@ position = Vector2(-117.647, -108.235)
 [node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-12.8, 4.8)
+position = Vector2(-1.59999, -12.8)
 shape = SubResource("RectangleShape2D_cxfcf")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.4
 autostart = true
 
+[node name="HurtboxTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12.8, -25.6)
+position = Vector2(-11.2, 4.8)
 shape = SubResource("RectangleShape2D_8cho5")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
@@ -91,3 +95,4 @@ script = ExtResource("5_dck53")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="EnemyStateMachine/Move" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="HurtboxTimer" to="." method="_on_hurtbox_timer_timeout"]

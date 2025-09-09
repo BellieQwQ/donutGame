@@ -440,9 +440,7 @@ script = ExtResource("1_qhqgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -2)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"Electrocuted"
-frame = 10
-frame_progress = 1.0
+animation = &"Run"
 
 [node name="StandingHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 85)
@@ -489,7 +487,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="SlideCooldown" type="Timer" parent="."]
-wait_time = 1.2
+wait_time = 0.8
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

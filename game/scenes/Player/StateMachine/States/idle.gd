@@ -2,6 +2,7 @@ extends State
 
 func enterState():
 	player.animator.play("Idle")
+	player.jumpCount = 0
 	print("Entering state: " + str(stateMachine.currentState))
 	
 func onPhysicsProcess(delta):
@@ -32,5 +33,8 @@ func onPhysicsProcess(delta):
 	
 	if Input.is_action_pressed("Down"):
 		stateMachine.changeState("Crouch")
+	
+	if Input.is_action_just_pressed("Punch"):
+		stateMachine.changeState("Punch")
 	
 	

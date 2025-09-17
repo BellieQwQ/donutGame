@@ -1,7 +1,8 @@
-[gd_scene load_steps=70 format=3 uid="uid://c3ki3gdpkbqg4"]
+[gd_scene load_steps=85 format=3 uid="uid://c3ki3gdpkbqg4"]
 
 [ext_resource type="Texture2D" uid="uid://bo0parcfr0po7" path="res://assets/sprites/playerSprites/playerIdle/IdleTileset.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cnbxed4ladum4" path="res://scenes/Player/player.gd" id="1_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://3c86b2e4pf81" path="res://scenes/Player/PlayerPunchAreas/punch_scene.tscn" id="2_18ciy"]
 [ext_resource type="Texture2D" uid="uid://hvm3wwq8b5ef" path="res://assets/sprites/playerSprites/playerRun/runTileset.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://c1lnro1eo21j7" path="res://assets/sprites/playerSprites/playerCrouch/crouchTileset.png" id="2_uiqp4"]
 [ext_resource type="Texture2D" uid="uid://l25ejcx4agyg" path="res://assets/sprites/playerSprites/playerFall/fallTileset.png" id="3_hvfru"]
@@ -10,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bigivuu1n3ovb" path="res://assets/sprites/playerSprites/PlayerJump/jumpTileset2.png" id="5_hvfru"]
 [ext_resource type="Texture2D" uid="uid://bdmrdmbwiffha" path="res://assets/sprites/playerSprites/playerSkidding/skiddingTileset.png" id="7_a06cl"]
 [ext_resource type="Texture2D" uid="uid://c2teo35scarl0" path="res://assets/sprites/playerSprites/playerSlide/Slide.png" id="8_aciub"]
+[ext_resource type="Texture2D" uid="uid://car3g0evmu5f" path="res://assets/sprites/playerSprites/playerPunch1/punch.png" id="8_cctgl"]
 [ext_resource type="Texture2D" uid="uid://u334k2i2cge2" path="res://assets/sprites/playerSprites/playerWalk/walkTileset.png" id="8_dl1wr"]
+[ext_resource type="Texture2D" uid="uid://6wxnhtkoc8hx" path="res://assets/sprites/playerSprites/playerRollJump/rollJump.png" id="9_hxkm2"]
 [ext_resource type="Script" uid="uid://bi1mt5c45v0md" path="res://scenes/Player/StateMachine/state_machine.gd" id="9_wwtew"]
 [ext_resource type="Script" uid="uid://cpro4ac6lkdgm" path="res://scenes/Player/StateMachine/States/idle.gd" id="10_uxo23"]
 [ext_resource type="Script" uid="uid://b5dhuf5b4pie1" path="res://scenes/Player/StateMachine/States/walk.gd" id="11_n7rn1"]
@@ -21,6 +24,19 @@
 [ext_resource type="Script" uid="uid://ctj5r1mbjn8x7" path="res://scenes/Player/jump.gd" id="16_tayva"]
 [ext_resource type="Script" uid="uid://5a8ybfyho5bc" path="res://scenes/Player/slide.gd" id="17_tayva"]
 [ext_resource type="Script" uid="uid://pq55fpcwav2j" path="res://scenes/Player/hurt.gd" id="18_x8khf"]
+[ext_resource type="Script" uid="uid://cmegai8ycdquk" path="res://scenes/Player/punch.gd" id="23_an8q1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(112, 296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tayva"]
+size = Vector2(112, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiqp4"]
+size = Vector2(112, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbg44"]
+size = Vector2(112, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbg44"]
 atlas = ExtResource("2_uiqp4")
@@ -97,6 +113,50 @@ region = Rect2(1110, 0, 370, 570)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyey8"]
 atlas = ExtResource("5_hvfru")
 region = Rect2(1480, 0, 370, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqhit"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(0, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8txv"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(450, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iww4"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(900, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ploos"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(1350, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6s7e"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(1800, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb22u"]
+atlas = ExtResource("8_cctgl")
+region = Rect2(2250, 0, 450, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnj8v"]
+atlas = ExtResource("9_hxkm2")
+region = Rect2(0, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xm4e"]
+atlas = ExtResource("9_hxkm2")
+region = Rect2(500, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6vns"]
+atlas = ExtResource("9_hxkm2")
+region = Rect2(1000, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiysd"]
+atlas = ExtResource("9_hxkm2")
+region = Rect2(1500, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03slv"]
+atlas = ExtResource("9_hxkm2")
+region = Rect2(2000, 0, 500, 570)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_g2els")
@@ -301,6 +361,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fqhit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8txv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iww4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ploos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6s7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb22u")
+}],
+"loop": true,
+"name": &"Punch",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnj8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xm4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6vns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiysd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03slv")
+}],
+"loop": true,
+"name": &"RollJump",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
 }, {
 "duration": 1.0,
@@ -380,17 +483,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(116, 294)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tayva"]
-size = Vector2(116, 166)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiqp4"]
-size = Vector2(116, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbg44"]
-size = Vector2(112, 320)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8khf"]
 
 [sub_resource type="Animation" id="Animation_x8khf"]
 resource_name = "Iframes"
@@ -429,30 +522,24 @@ _data = {
 &"RESET": SubResource("Animation_aciub")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8khf"]
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 floor_constant_speed = true
 floor_snap_length = 100.0
 script = ExtResource("1_qhqgy")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(5, -2)
-sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"Run"
+punchScene = ExtResource("2_18ciy")
 
 [node name="StandingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 85)
+position = Vector2(0, 84)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="JumpingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 21)
+position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_tayva")
 disabled = true
 
 [node name="CrouchingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 168)
+position = Vector2(0, 168)
 shape = SubResource("RectangleShape2D_uiqp4")
 
 [node name="SlidingHitbox" type="CollisionShape2D" parent="."]
@@ -461,10 +548,10 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_nbg44")
 disabled = true
 
-[node name="FXManager" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_aciub")
-}
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, -2)
+sprite_frames = SubResource("SpriteFrames_smehm")
+animation = &"RollJump"
 
 [node name="slideDetector" type="ShapeCast2D" parent="."]
 position = Vector2(0, 80)
@@ -474,24 +561,43 @@ shape = SubResource("RectangleShape2D_x8khf")
 target_position = Vector2(0, -4)
 collision_mask = 4
 
-[node name="InvincibleTime" type="Timer" parent="."]
-wait_time = 1.8
-one_shot = true
-
-[node name="KnockTime" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="SlideDuration" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="SlideCooldown" type="Timer" parent="."]
-wait_time = 0.8
-one_shot = true
+[node name="FXManager" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aciub")
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.45, 0.45)
+
+[node name="SceneSpawners" type="Node2D" parent="."]
+
+[node name="Punch" type="Marker2D" parent="SceneSpawners"]
+position = Vector2(184, -48)
+
+[node name="Slide" type="Marker2D" parent="SceneSpawners"]
+position = Vector2(224, 200)
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="InvincibleTime" type="Timer" parent="Timers"]
+wait_time = 1.8
+one_shot = true
+
+[node name="KnockTime" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SlideDuration" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SlideCooldown" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+
+[node name="PunchTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("9_wwtew")
@@ -524,6 +630,11 @@ script = ExtResource("17_tayva")
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("18_x8khf")
 
-[connection signal="timeout" from="InvincibleTime" to="StateMachine/Hurt" method="_on_iframes_timeout"]
-[connection signal="timeout" from="KnockTime" to="StateMachine/Hurt" method="_on_knock_time_timeout"]
-[connection signal="timeout" from="SlideDuration" to="StateMachine/Slide" method="_on_slide_duration_timeout"]
+[node name="Punch" type="Node" parent="StateMachine"]
+script = ExtResource("23_an8q1")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Punch" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timers/InvincibleTime" to="StateMachine/Hurt" method="_on_iframes_timeout"]
+[connection signal="timeout" from="Timers/KnockTime" to="StateMachine/Hurt" method="_on_knock_time_timeout"]
+[connection signal="timeout" from="Timers/SlideDuration" to="StateMachine/Slide" method="_on_slide_duration_timeout"]
+[connection signal="timeout" from="Timers/PunchTimer" to="StateMachine/Punch" method="_on_punch_timer_timeout"]

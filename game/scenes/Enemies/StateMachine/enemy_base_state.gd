@@ -27,13 +27,13 @@ func enterState():
 func exitState():
 	pass
 	
-func onProcess(delta):
+func onProcess(_delta):
 	pass
 	
-func onPhysicsProcess(delta):
+func onPhysicsProcess(_delta):
 	pass
 	
-func handleInput(event):
+func handleInput(_event):
 	pass
 	
 #endregion

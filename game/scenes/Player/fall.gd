@@ -1,7 +1,10 @@
 extends State
 
 func enterState():
-	player.animator.play("Fall")
+	if player.jumpCount == 2:
+		player.animator.play("RollJump")
+	else:
+		player.animator.play("Fall")
 	print("Entering state: " + str(stateMachine.currentState))
 
 func onPhysicsProcess(delta):

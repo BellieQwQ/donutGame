@@ -1,0 +1,171 @@
+[gd_scene load_steps=20 format=3 uid="uid://co4gjnkxhergp"]
+
+[ext_resource type="Texture2D" uid="uid://b43j6e8pigthc" path="res://assets/sprites/Enemies/Dummy/DummyHit.png" id="1_5bv3u"]
+[ext_resource type="Script" uid="uid://dnepxsdss1pcf" path="res://scenes/Enemies/Dummy/practice_dummy.gd" id="1_rq04k"]
+[ext_resource type="Script" uid="uid://cs7qv4a3b63e1" path="res://scenes/Enemies/StateMachine/enemy_state_machine.gd" id="2_i0au7"]
+[ext_resource type="PackedScene" uid="uid://c1m4hof1taft" path="res://scenes/Props/damage.tscn" id="2_qoeuf"]
+[ext_resource type="Script" uid="uid://dyjcimleu3j80" path="res://scenes/Enemies/Dummy/idle.gd" id="3_rq04k"]
+[ext_resource type="Script" uid="uid://b0w6pcjb84rhv" path="res://scenes/Enemies/Dummy/hit.gd" id="4_i0au7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_attaq"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(0, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgmww"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(500, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr5g8"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(1000, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8u15"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(1500, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vo2d"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(2000, 0, 500, 570)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdqri"]
+atlas = ExtResource("1_5bv3u")
+region = Rect2(0, 0, 500, 570)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcuer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_attaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgmww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr5g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8u15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vo2d")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdqri")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp54f"]
+size = Vector2(42, 20)
+
+[sub_resource type="GDScript" id="GDScript_pp54f"]
+script/source = "extends Area2D
+
+func _ready():
+	area_entered.connect(_on_area_entered)
+	
+func _on_area_entered(area):
+	if !area.is_in_group(\"playerPunch\"):
+		return
+	
+	var enemy = get_owner()
+	if enemy == null:
+		enemy = get_parent()
+	
+	if enemy and enemy.has_method(\"onPunched\"):
+		enemy.onPunched(area)
+	elif enemy and enemy.has_node(\"EnemyStateMachine\"):
+		enemy.get_node(\"EnemyStateMachine\").changeState(\"Hit\")
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pp54f"]
+radius = 112.0
+height = 480.0
+
+[sub_resource type="Animation" id="Animation_rq04k"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.298039, 0.411765, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_attaq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_attaq"]
+_data = {
+&"Hit": SubResource("Animation_rq04k"),
+&"RESET": SubResource("Animation_attaq")
+}
+
+[node name="PracticeDummy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rq04k")
+health = 100
+damageProp = ExtResource("2_qoeuf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hcuer")
+animation = &"Hit"
+frame_progress = 0.812698
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 256)
+shape = SubResource("RectangleShape2D_pp54f")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 2
+script = SubResource("GDScript_pp54f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_pp54f")
+
+[node name="FXManager" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_attaq")
+}
+
+[node name="DamageSpawner" type="Marker2D" parent="."]
+position = Vector2(0, -208)
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("2_i0au7")
+initialState = NodePath("Idle")
+metadata/_custom_type_script = "uid://cs7qv4a3b63e1"
+
+[node name="Idle" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("3_rq04k")
+
+[node name="Hit" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_i0au7")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyStateMachine/Hit" method="_on_animated_sprite_2d_animation_finished"]

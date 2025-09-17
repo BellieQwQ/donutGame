@@ -22,6 +22,10 @@ func onPhysicsProcess(delta):
 		stateMachine.changeState("Sprint")
 		return
 	
+	if Input.is_action_just_pressed("Punch"):
+		stateMachine.changeState("Punch")
+		return
+	
 	var targetSpeed = player.SPEED * player.direction
 	
 	if player.direction != 0:
@@ -36,3 +40,4 @@ func onPhysicsProcess(delta):
 	flip()
 	applyGravity(delta)
 	handlePlayerCorrection(delta)
+	

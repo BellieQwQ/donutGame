@@ -1,7 +1,10 @@
 extends State
 
 func enterState():
-	player.animator.play("Jump")
+	if player.jumpCount == 2 and CharmManager.charmEquipped == CharmManager.CharmName.LIGHT_WEIGHT:
+		player.animator.play("RollJump")
+	else:
+		player.animator.play("Jump")
 	player.velocity.y = player.jumpVelocity
 	print("Entering state: " + str(stateMachine.currentState))
 	

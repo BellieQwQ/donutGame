@@ -2,8 +2,6 @@ extends Enemy
 
 const SPEED = 500
 
-var player : Player
-
 var direction = -1
 var isMovingLeft = true
 

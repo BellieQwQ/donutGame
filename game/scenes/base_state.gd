@@ -31,14 +31,20 @@ func handleJumpEvents(delta):
 	if player.is_on_floor():
 		player.coyoteTimer = player.coyoteTime
 	
-	if (player.is_on_floor() or player.coyoteTimer > 0) and player.jumpBufferTimer > 0 and !player.blockedAbove:
+	var canGroundJump = (player.is_on_floor() or player.coyoteTimer > 0)
+	
+	var canAirJump = (!player.is_on_floor() and CharmManager.currentCharm(CharmManager.CharmName.LIGHT_WEIGHT) and player.jumpCount < player.maxJumps)
+	
+	if player.jumpBufferTimer > 0 and !player.blockedAbove and (canGroundJump or canAirJump):
 		player.coyoteTimer = 0
 		player.jumpBufferTimer = 0
+		player.jumpCount += 1
 		stateMachine.changeState("Jump")
 		return true
+		
 	return false
 	
-func handlePlayerCorrection(delta):
+func handlePlayerCorrection(_delta):
 	player.applyCornerCorrection()
 	player.move_and_slide()
 	
@@ -52,13 +58,13 @@ func enterState():
 func exitState():
 	pass
 	
-func onProcess(delta):
+func onProcess(_delta):
 	pass
 	
-func onPhysicsProcess(delta):
+func onPhysicsProcess(_delta):
 	pass
 	
-func handleInput(event):
+func handleInput(_event):
 	pass
 	
 #endregion

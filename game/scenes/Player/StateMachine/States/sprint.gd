@@ -16,6 +16,9 @@ func onPhysicsProcess(delta):
 		stateMachine.changeState("Crouch")
 		return
 	
+	if Input.is_action_just_pressed("Punch"):
+		stateMachine.changeState("Punch")
+	
 	if Input.is_action_just_pressed("Slide") and player.is_on_floor() and abs(player.velocity.x) >= 800 and player.slideCooldown.is_stopped():
 		stateMachine.changeState("Slide")
 		return

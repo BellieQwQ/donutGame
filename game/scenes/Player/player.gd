@@ -15,7 +15,7 @@ var coyoteTime = 0.12
 var coyoteTimer = 0
 
 var jumpCount = 0
-var maxJumps = 1
+var maxJumps = 2
 
 var jumpBufferTime = 0.2
 var jumpBufferTimer = 0
@@ -26,7 +26,7 @@ var knockbackDirection = 0
 
 var direction = 0
 var slideDirection = 0
-var jumpHeight = 800 #- 300 
+var jumpHeight = 900 #- 300 
 var timeToJumpPeak = 0.48 #- 0.10
 var timeToDescent = 0.42 #- 0.09
 
@@ -38,13 +38,13 @@ signal playerHurt
 
 var punchDamage = 25
 
-const SPEED = 900
+const SPEED = 1000
 const SPRINT_SPEED = 2000
-const ACCELERATION = 3000
-const DECELERATION = 12000
+const ACCELERATION = 4000
+const DECELERATION = 15000
 const SKID_THRESHOLD = 1000
-const SLIDE_SPEED = 4500
-const SLIDE_DECELERATION = 7000
+const SLIDE_SPEED = 5000
+const SLIDE_DECELERATION = 8000
 const SKID_DECELERATION = 4500
 
 @onready var stateMachine = $StateMachine
@@ -70,9 +70,8 @@ var lastDamageReceived: DamageType = DamageType.NORMAL
 
 func _ready():
 	playerHurt.connect(_on_player_hurt)
-	#CharmManager.equipCharm(CharmManager.CharmName.NONE) # Charm here
-	#CharmManager.applyPlayerMods(self)
-	CharmManager.register_player(self)
+	CharmManager.equipCharm(CharmManager.CharmName.LIGHT_WEIGHT)
+	CharmManager.applyPlayerMods(self)
 
 func _physics_process(_delta):
 	blockedAbove = slideDetector.is_colliding()

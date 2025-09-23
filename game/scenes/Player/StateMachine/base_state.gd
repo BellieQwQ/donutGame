@@ -29,6 +29,7 @@ func handleJumpEvents(delta):
 		player.jumpBufferTimer = player.jumpBufferTime
 	
 	if player.is_on_floor():
+		player.jumpCount = 0
 		player.coyoteTimer = player.coyoteTime
 	
 	var canGroundJump = (player.is_on_floor() or player.coyoteTimer > 0)

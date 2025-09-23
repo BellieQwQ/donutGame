@@ -1,6 +1,7 @@
 extends State
 
 func enterState():
+	
 	if player.jumpCount == 2:
 		player.animator.play("RollJump")
 	else:
@@ -22,6 +23,7 @@ func onPhysicsProcess(delta):
 	applyGravity(delta)
 	
 	if player.is_on_floor():
+		player.jumpCount = 0
 		stateMachine.changeState("Idle")
 	
 	handlePlayerCorrection(delta)

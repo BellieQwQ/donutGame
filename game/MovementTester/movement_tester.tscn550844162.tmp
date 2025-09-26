@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://fvy56qrhsct6"]
+[gd_scene load_steps=16 format=4 uid="uid://fvy56qrhsct6"]
 
 [ext_resource type="Script" uid="uid://c68bvytccifty" path="res://MovementTester/movement_tester.gd" id="1_k7dts"]
 [ext_resource type="PackedScene" uid="uid://c3ki3gdpkbqg4" path="res://scenes/Player/player.tscn" id="2_lm4dk"]
@@ -12,9 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://dyek44tt0nbjq" path="res://assets/tutorial/SLIDE.png" id="8_uwncr"]
 [ext_resource type="PackedScene" uid="uid://co4gjnkxhergp" path="res://scenes/Enemies/Dummy/practice_dummy.tscn" id="10_df20b"]
 [ext_resource type="PackedScene" uid="uid://dr8dahfd6cwte" path="res://scenes/Enemies/BattleConga/battle_conga.tscn" id="12_2dp7u"]
-[ext_resource type="PackedScene" uid="uid://b1m0cxsdwa54v" path="res://scenes/Enemies/HaepariB/haepari_b.tscn" id="13_k7dts"]
-[ext_resource type="PackedScene" uid="uid://debvgobhig4md" path="res://scenes/Enemies/HaepariA/haepari_a.tscn" id="14_paj65"]
-[ext_resource type="PackedScene" uid="uid://blvqatll38iig" path="res://scenes/Enemies/Stoner/stoner_rock.tscn" id="15_v3enk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3enk"]
 texture = ExtResource("2_paj65")
@@ -137,16 +134,7 @@ position = Vector2(7568, 232)
 position = Vector2(4792, 832)
 
 [node name="Player" parent="." instance=ExtResource("2_lm4dk")]
-position = Vector2(3888, 72)
+position = Vector2(-6888, -1904)
 
 [node name="BattleConga" parent="." instance=ExtResource("12_2dp7u")]
 position = Vector2(-2815.9998, 743.99994)
-
-[node name="Haepari B" parent="." instance=ExtResource("13_k7dts")]
-position = Vector2(-1152, 360)
-
-[node name="Haepari A" parent="." instance=ExtResource("14_paj65")]
-position = Vector2(2312, 360)
-
-[node name="StonerRock" parent="." instance=ExtResource("15_v3enk")]
-position = Vector2(416, 1024)

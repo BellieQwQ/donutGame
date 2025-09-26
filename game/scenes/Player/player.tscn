@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://c3ki3gdpkbqg4"]
+[gd_scene load_steps=86 format=3 uid="uid://c3ki3gdpkbqg4"]
 
 [ext_resource type="Texture2D" uid="uid://bo0parcfr0po7" path="res://assets/sprites/playerSprites/playerIdle/IdleTileset.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cnbxed4ladum4" path="res://scenes/Player/player.gd" id="1_qhqgy"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://5a8ybfyho5bc" path="res://scenes/Player/slide.gd" id="17_tayva"]
 [ext_resource type="Script" uid="uid://pq55fpcwav2j" path="res://scenes/Player/hurt.gd" id="18_x8khf"]
 [ext_resource type="Script" uid="uid://cmegai8ycdquk" path="res://scenes/Player/punch.gd" id="23_an8q1"]
+[ext_resource type="Script" uid="uid://cqh7p4r78w80m" path="res://scenes/Player/pound.gd" id="26_cg2hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(112, 296)
@@ -577,6 +578,9 @@ position = Vector2(184, -48)
 [node name="Slide" type="Marker2D" parent="SceneSpawners"]
 position = Vector2(224, 200)
 
+[node name="Pound" type="Marker2D" parent="SceneSpawners"]
+position = Vector2(0, 296)
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="InvincibleTime" type="Timer" parent="Timers"]
@@ -632,6 +636,9 @@ script = ExtResource("18_x8khf")
 
 [node name="Punch" type="Node" parent="StateMachine"]
 script = ExtResource("23_an8q1")
+
+[node name="Pound" type="Node" parent="StateMachine"]
+script = ExtResource("26_cg2hl")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Punch" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timers/InvincibleTime" to="StateMachine/Hurt" method="_on_iframes_timeout"]

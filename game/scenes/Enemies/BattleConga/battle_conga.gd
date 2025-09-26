@@ -50,3 +50,29 @@ func _on_hurtbox_body_entered(body):
 	
 func _on_hurtbox_timer_timeout():
 	hurtbox.set_deferred("monitoring", true)
+	
+func onPunched(_area):
+	stateMachine.changeState("Hit")
+	health -= 25
+	print("Enemy HP:", health, " (-", 25, ")")
+	spawnDamage()
+	
+func spawnDamage():
+	if damageProp and spawner:
+		var FX = damageProp.instantiate()
+		spawner.add_child(FX)
+		FX.position = Vector2.ZERO
+	
+		var sprite = (FX as AnimatedSprite2D)
+		var animPlayer = FX.get_node("AnimationPlayer") as AnimationPlayer
+		
+		if sprite:
+			sprite.play("25")
+		if animPlayer:
+			animPlayer.play("vanishing")
+	
+	if health <= 0:
+		die()
+	
+func die():
+	queue_free()

@@ -62,6 +62,7 @@ const SKID_DECELERATION = 4500
 @onready var punchTimer = $Timers/PunchTimer
 @onready var punchMarker = $SceneSpawners/Punch
 @onready var slideMarker = $SceneSpawners/Slide
+@onready var poundMarker = $SceneSpawners/Pound
 
 @export var punchScene: PackedScene 
 

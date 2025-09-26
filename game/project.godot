@@ -14,6 +14,8 @@ config/name="Game"
 config/version="1.0a"
 run/main_scene="uid://fvy56qrhsct6"
 config/features=PackedStringArray("4.5", "Forward Plus")
+run/max_fps=144
+run/delta_smoothing=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -95,6 +97,7 @@ changeCharm={
 
 [physics]
 
+common/physics_ticks_per_second=144
 2d/default_gravity=2000.0
 
 [rendering]

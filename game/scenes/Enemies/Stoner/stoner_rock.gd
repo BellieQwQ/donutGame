@@ -1,4 +1,4 @@
-extends Enemy
+extends Node
 
 var player: Player
 @export var larva: PackedScene

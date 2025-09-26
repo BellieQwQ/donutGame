@@ -35,6 +35,9 @@ func onPhysicsProcess(delta):
 	
 	if player.velocity.y >= 0:
 		stateMachine.changeState("Fall")
+		
+	if Input.is_action_pressed("ui_down"):
+		stateMachine.changeState("Pound")
 	
 	handlePlayerCorrection(delta)
 	

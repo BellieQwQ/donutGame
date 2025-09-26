@@ -26,4 +26,7 @@ func onPhysicsProcess(delta):
 		player.jumpCount = 0
 		stateMachine.changeState("Idle")
 	
+	if Input.is_action_pressed("ui_down"):
+		stateMachine.changeState("Pound")
+	
 	handlePlayerCorrection(delta)

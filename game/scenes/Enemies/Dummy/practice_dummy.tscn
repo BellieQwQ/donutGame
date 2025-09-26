@@ -135,8 +135,7 @@ damageProp = ExtResource("2_qoeuf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hcuer")
-animation = &"Hit"
-frame_progress = 0.812698
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, 256)
